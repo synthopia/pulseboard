@@ -1,0 +1,53 @@
+name: 🚀 Tech Upgrade
+description: Request a technology, dependency, or infrastructure upgrade
+labels:
+  - tech
+  - enhancement
+title: '[Tech Upgrade]: '
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a tech upgrade! Please provide as much detail as possible.
+
+  - type: textarea
+    id: what
+    attributes:
+      label: What needs to be upgraded?
+      description: Specify the technology, dependency, or infrastructure you want to upgrade (e.g., Node.js version, Prisma, Docker, CI, etc.)
+      placeholder: e.g., Upgrade Node.js to 20.x, update Prisma to latest, switch to Bun, etc.
+    validations:
+      required: true
+
+  - type: textarea
+    id: why
+    attributes:
+      label: Why is this upgrade needed?
+      description: Explain the motivation, benefits, or issues with the current version.
+      placeholder: e.g., Security, performance, new features, compatibility, etc.
+    validations:
+      required: true
+
+  - type: textarea
+    id: risks
+    attributes:
+      label: Risks or breaking changes
+      description: Are there any known risks, breaking changes, or migration steps required?
+      placeholder: e.g., May require code changes, new Docker base image, etc.
+
+  - type: textarea
+    id: references
+    attributes:
+      label: References or resources
+      description: Add any relevant links, docs, or release notes.
+      placeholder: e.g., https://github.com/prisma/prisma/releases
+
+  - type: checkboxes
+    id: help
+    attributes:
+      label: Can you help implement this upgrade?
+      options:
+        - label: I can help with the upgrade
+        - label: I can help with testing
+        - label: I can help with documentation
