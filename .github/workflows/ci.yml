@@ -49,6 +49,9 @@ jobs:
           cache: 'npm'
 
       - name: Install pnpm
+        run: npm install -g pnpm@8
+
+      - name: Install pnpm
         uses: pnpm/action-setup@v2
         with:
           version: 8
@@ -103,9 +106,7 @@ jobs:
           cache: 'npm'
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8
+        run: npm install -g pnpm@8
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
