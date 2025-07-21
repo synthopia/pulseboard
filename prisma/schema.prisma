@@ -16,3 +16,26 @@ model User {
 
     @@map("users")
 }
+
+model Service {
+    id        Int            @id @default(autoincrement())
+    name      String
+    url       String         @unique
+    method    String
+    headers   Json?
+    body      Json?
+    createdAt DateTime       @default(now())
+    checks    ServiceCheck[]
+}
+
+model ServiceCheck {
+    id           Int      @id @default(autoincrement())
+    service      Service  @relation(fields: [serviceId], references: [id])
+    serviceId    Int
+    checkedAt    DateTime @default(now())
+    status       Int
+    responseTime Int
+    error        String?
+    category     String // ok, warn, err, etc.
+    rawResponse  Json?
+}

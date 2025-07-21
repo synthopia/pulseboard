@@ -1,12 +1,12 @@
 {
   "name": "pulseboard",
-  "version": "0.0.0",
-  "description": "",
-  "main": "src/index.ts",
+  "version": "1.0.0",
+  "description": "A modern, production-ready REST API template built with Node.js, TypeScript, Express, and Prisma",
+  "main": "dist/index.js",
   "scripts": {
     "start": "node dist/index.js",
     "dev": "nodemon src/index.ts",
-    "build": "npx prisma generate && tsc",
+    "build": "npx prisma generate && tsc && cp -r src/public dist/public",
     "prisma": "npx prisma generate",
     "lint": "eslint src/**/*.ts",
     "lint:fix": "eslint src/**/*.ts --fix",
@@ -18,11 +18,34 @@
     "type-check": "tsc --noEmit",
     "prepare": "husky install"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "nodejs",
+    "typescript",
+    "express",
+    "prisma",
+    "api",
+    "template",
+    "rest",
+    "backend",
+    "starter",
+    "boilerplate"
+  ],
+  "author": "Pulseboard Contributors",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/pulseboard.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/pulseboard/issues"
+  },
+  "homepage": "https://github.com/yourusername/pulseboard#readme",
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  },
   "dependencies": {
-    "@prisma/client": "^5.10.2",
+    "@prisma/client": "^5.22.0",
     "axios": "^1.6.7",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",

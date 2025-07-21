@@ -2,6 +2,9 @@ FROM node:20-alpine
 
 WORKDIR /app
 
+# Install OpenSSL 1.1 for Prisma
+RUN apk add --no-cache openssl1.1-compat || apk add --no-cache openssl
+
 # Copy package files
 COPY package.json pnpm-lock.yaml ./
 
@@ -10,6 +13,7 @@ RUN npm install -g pnpm && pnpm install --frozen-lockfile
 
 # Copy source code
 COPY . .
+COPY src/public ./public
 
 # Generate Prisma client
 RUN pnpm run prisma

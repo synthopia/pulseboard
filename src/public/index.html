@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>System Status Dashboard</title>
+    <script src="./tailwind.js"></script>
+  </head>
+  <body class="bg-gray-50 min-h-screen">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <!-- Header -->
+      <div class="text-center mb-12">
+        <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
+          System Status
+        </h1>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+          Real-time monitoring dashboard for all services
+        </p>
+      </div>
+
+      <!-- Overall Status -->
+      <div
+        class="bg-white rounded-2xl shadow-lg p-6 sm:p-8 mb-8 border border-gray-100"
+      >
+        <div class="flex items-center justify-center">
+          <div
+            id="overall-status"
+            class="flex items-center gap-4 text-xl sm:text-2xl font-semibold"
+          >
+            <div
+              class="w-6 h-6 rounded-full bg-green-500 animate-pulse-dot shadow-lg shadow-green-500/25"
+            ></div>
+            <span class="text-gray-800">Loading...</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Critical Issues -->
+      <div
+        id="critical-issues"
+        class="hidden bg-white rounded-2xl shadow-lg p-6 sm:p-8 mb-8 border border-red-200"
+      >
+        <h2
+          class="text-2xl font-bold text-red-600 mb-6 flex items-center gap-3"
+        >
+          <span class="text-3xl">🚨</span>
+          Critical Issues
+        </h2>
+        <div id="critical-issues-list" class="space-y-4"></div>
+      </div>
+
+      <!-- Loading State -->
+      <div id="loading" class="text-center py-16">
+        <div class="inline-flex items-center gap-3 text-gray-600 text-lg">
+          <div
+            class="w-6 h-6 border-2 border-gray-300 border-t-blue-500 rounded-full animate-spin"
+          ></div>
+          Loading service status...
+        </div>
+      </div>
+
+      <!-- Error State -->
+      <div
+        id="error"
+        class="hidden bg-white rounded-2xl shadow-lg p-8 text-center border border-red-200"
+      >
+        <div class="text-red-600 text-lg font-medium">
+          Failed to load service status. Retrying...
+        </div>
+      </div>
+
+      <!-- Services Grid -->
+      <div
+        id="services-grid"
+        class="grid gap-6 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 mb-12"
+      ></div>
+
+      <!-- Refresh Info -->
+      <div class="text-center text-gray-500 text-sm">
+        <p>
+          Updates every 10 seconds • Last updated:
+          <span id="last-updated" class="font-medium">Never</span>
+        </p>
+      </div>
+    </div>
+
+    <script src="./index.js"></script>
+  </body>
+</html>

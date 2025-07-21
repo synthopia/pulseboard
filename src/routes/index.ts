@@ -11,6 +11,12 @@ export const initiateRouter = (app: Application) => {
       router: v1Routes.testRouter,
       secure: false,
     },
+    {
+      version: 1,
+      path: 'status',
+      router: v1Routes.statusRouter,
+      secure: false,
+    },
   ];
 
   routes.map(route => {

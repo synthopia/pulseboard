@@ -14,3 +14,116 @@ paths:
                   message:
                     type: string
                     example: Hello, world!
+
+  /status:
+    get:
+      summary: List all monitored services and their latest status
+      tags: [Status]
+      responses:
+        200:
+          description: List of services and their latest check
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServiceWithLatestCheck'
+
+  /status/{id}:
+    get:
+      summary: Get status details for a single service
+      tags: [Status]
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Service ID
+      responses:
+        200:
+          description: Service and its recent checks
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceWithChecks'
+        404:
+          description: Service not found
+
+  /status/all-checks:
+    get:
+      summary: Get all service checks for all services
+      tags: [Status]
+      responses:
+        200:
+          description: List of all service checks
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServiceCheck'
+
+components:
+  schemas:
+    Service:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        url:
+          type: string
+        method:
+          type: string
+        headers:
+          type: object
+          additionalProperties: true
+        body:
+          type: object
+          additionalProperties: true
+        createdAt:
+          type: string
+          format: date-time
+
+    ServiceCheck:
+      type: object
+      properties:
+        id:
+          type: integer
+        checkedAt:
+          type: string
+          format: date-time
+        status:
+          type: integer
+        responseTime:
+          type: integer
+          description: Response time in ms
+        error:
+          type: string
+          nullable: true
+        category:
+          type: string
+          enum: [ok, warn, err]
+        rawResponse:
+          type: object
+          nullable: true
+
+    ServiceWithLatestCheck:
+      allOf:
+        - $ref: '#/components/schemas/Service'
+        - type: object
+          properties:
+            latestCheck:
+              $ref: '#/components/schemas/ServiceCheck'
+
+    ServiceWithChecks:
+      allOf:
+        - $ref: '#/components/schemas/Service'
+        - type: object
+          properties:
+            checks:
+              type: array
+              items:
+                $ref: '#/components/schemas/ServiceCheck'
