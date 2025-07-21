@@ -1,23 +1,24 @@
-import express from "express";
-import type { Request, Response } from "express";
-import TestService from "./service";
+import { Router, Request, Response } from 'express';
+import TestService from './service';
+import { asyncHandler } from '../../../middleware/error-handler';
 
-// You can import service of current route system from ./service.ts
-
+const router: Router = Router();
 const testService = new TestService();
 
-const testRouter = express.Router({ mergeParams: true });
+router.get(
+  '/ping',
+  asyncHandler(async (_req: Request, res: Response) => {
+    const result = testService.getPing();
+    res.json(result);
+  })
+);
 
-testRouter.get("/", async (request: Request, response: Response) => {
-  try {
-    const announcements = [{ title: "Test Announcement" }];
+router.get(
+  '/test',
+  asyncHandler(async (_req: Request, res: Response) => {
+    const result = testService.test();
+    res.json({ message: result });
+  })
+);
 
-    console.log(testService.test());
-
-    return response.status(200).json(announcements);
-  } catch (err: any) {
-    return response.status(500).json(err.message);
-  }
-});
-
-export default testRouter;
+export default router;
