@@ -1,6 +1,6 @@
 {
   "name": "pulseboard",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "A modern, production-ready REST API template built with Node.js, TypeScript, Express, and Prisma",
   "main": "dist/index.js",
   "scripts": {
