@@ -10,17 +10,7 @@ export const services: {
 }[] = [
   {
     name: 'App',
-    url: 'https://skilltap.net',
-    method: 'GET',
-  },
-  {
-    name: 'OpenCNT',
-    url: 'https://opencnt.com',
-    method: 'GET',
-  },
-  {
-    name: 'Crable',
-    url: 'https://crable.co',
+    url: 'https://github.com/synthopia/pulseboard',
     method: 'GET',
   },
 ];
